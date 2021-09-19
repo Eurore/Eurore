@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Advanced
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string input = Console.ReadLine();
+            Stack<char> stack = new Stack<char>();
+
+            foreach (var ch in input)
+            {
+                if (stack.Any())
+                {
+                    if (stack.Peek() == '{' && ch == '}')
+                    {
+                        stack.Pop();
+                        continue;
+                    }
+                    else if (stack.Peek() == '[' && ch == ']')
+                    {
+                        stack.Pop();
+                        continue;
+                    }
+                    else if (stack.Peek() == '(' && ch == ')')
+                    {
+                        stack.Pop();
+                        continue;
+                    }
+                }
+
+                stack.Push(ch);
+            }
+
+            if (stack.Any())
+            {
+                Console.WriteLine("NO");
+            }
+            else
+            {
+                Console.WriteLine("YES");
+            }
+        }
+    }
+}
